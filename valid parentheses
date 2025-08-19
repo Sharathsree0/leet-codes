@@ -1,0 +1,21 @@
+function isValid(s) {
+  const stack = []; // to store opening brackets
+
+  const map = {
+    ')': '(', 
+    ']': '[', 
+    '}': '{'
+  };
+
+  for (let char of s) {
+    if (char === '(' || char === '[' || char === '{') {
+      stack.push(char); // opening bracket → push to stack
+    } else {
+      if (stack.length === 0 || stack.pop() !== map[char]) {
+        return false; // mismatch or no opening bracket
+      }
+    }
+  }
+
+  return stack.length === 0; // all brackets matched
+}
