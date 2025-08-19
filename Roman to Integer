@@ -1,0 +1,22 @@
+function romanToInt(s) {
+  const romanMap = {
+    I: 1, V: 5, X: 10, L: 50,
+    C: 100, D: 500, M: 1000
+  };
+
+  let total = 0; // final answer
+  let prev = 0;  // previous value
+           
+  for (let i = s.length - 1; i >= 0; i--) {              // loop from right to left
+    const curr = romanMap[s[i]]; // current letterinte value
+    if (curr < prev) {
+      total -= curr; // subtract cheyyu
+    } else {
+      total += curr; // add cheyyu
+    }
+
+    prev = curr; // update previous
+  }
+
+  return total;
+}
