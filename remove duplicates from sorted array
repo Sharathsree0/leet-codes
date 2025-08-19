@@ -1,0 +1,14 @@
+function removeDuplicates(nums) {
+  if (nums.length === 0) return 0;
+
+  let i = 0; // write pointer
+
+  for (let j = 1; j < nums.length; j++) {
+    if (nums[j] !== nums[i]) {
+      i++; // move write pointer
+      nums[i] = nums[j]; // copy unique value
+    }
+  }
+
+  return i + 1; // total unique count
+}
