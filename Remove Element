@@ -1,0 +1,12 @@
+function removeElement(nums, val) {
+  let i = 0; // write pointer
+
+  for (let j = 0; j < nums.length; j++) {
+    if (nums[j] !== val) {
+      nums[i] = nums[j]; // copy non-val element
+      i++; // move write pointer
+    }
+  }
+
+  return i; // total count of non-val elements
+}
