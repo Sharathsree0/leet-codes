@@ -1,0 +1,43 @@
+/**
+ * @param {string[]} wordlist
+ * @param {string[]} queries
+ * @return {string[]}
+ */
+var spellchecker = function(wordlist, queries) {
+    const vowels = new Set(['a', 'e', 'i', 'o', 'u']);
+
+    const normalize = word => word.toLowerCase().replace(/[aeiou]/g, '*');
+
+    const exactSet = new Set(wordlist);
+    const caseMap = new Map();
+    const vowelMap = new Map();
+
+    for (const word of wordlist) {
+        const lower = word.toLowerCase();
+        const vowelKey = normalize(word);
+
+        if (!caseMap.has(lower)) caseMap.set(lower, word);
+        if (!vowelMap.has(vowelKey)) vowelMap.set(vowelKey, word);
+    }
+
+    const result = [];
+
+    for (const query of queries) {
+        if (exactSet.has(query)) {
+            result.push(query); // Exact match
+        } else {
+            const lower = query.toLowerCase();
+            const vowelKey = normalize(query);
+
+            if (caseMap.has(lower)) {
+                result.push(caseMap.get(lower)); // Case-insensitive match
+            } else if (vowelMap.has(vowelKey)) {
+                result.push(vowelMap.get(vowelKey)); // Vowel-error match
+            } else {
+                result.push(""); // No match
+            }
+        }
+    }
+
+    return result;
+};
