@@ -1,0 +1,28 @@
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[]}
+ */
+var twoSum = function(nums, target) {
+//     const map = new Map(); // stores value → index
+
+//   for (let i = 0; i < nums.length; i++) {
+//     const complement = target - nums[i];
+
+//     if (map.has(complement)) {
+//       return [map.get(complement), i]; // found the pair
+//     }
+
+//     map.set(nums[i], i); // store current value and index
+//   }
+const cache = new Map();
+
+for (let i= 0; i<nums.length;i++){
+    const checking = target - nums[i]
+    if (cache.has(checking)){
+        return [cache.get(checking),i]
+    }
+    cache.set(nums[i],i)
+}
+
+};
